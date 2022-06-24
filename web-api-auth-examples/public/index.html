@@ -4,17 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Spotify</title>
 </head>
 <body>
 
-    <input id="searchBox" type="text">
+    <form action="submit">
+        <input id="searchBox" type="text">
+        <button>Search</button>
+    </form>
 
-    <script>
-        const searchBox = document.querySelector('#searchBox');
-        searchBox.addEventListener('keyup', e => {
-            console.log(searchBox.value);
-        });
-    </script>
+    <div id="suggestions">
+        <!-- <div id="artists" class="suggestion-container">
+            <h2>Artists</h2>
+            <a href="" class="suggestion"></a>
+            <li class="suggestion"></li>
+        </div> -->
+        <div id="tracks" class="suggestion-container">
+            <h2>Tracks</h2>
+            <!-- <a href="" class="suggestion"></a> -->
+        </div>
+    </div>
+
+    <div id="queue">
+
+    </div>
+
+    <div class="currentlyPlaying">
+        <img > 
+        <p></p>
+        <small></small>
+    </div>
+
+
+    <script src="app.js"></script>
+    <script src="lastfm.api.cache.js"></script>
+    <script src="lastfm.api.js"></script>
+    <script src="lastfm.api.md5.js"></script>
+    <script src="nowPlaying.js"></script>
 </body>
 </html>

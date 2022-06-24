@@ -57,6 +57,28 @@
        state: state
      }));
  });
+
+ app.get('/get-suggestions', function(req, res) {
+   // make api request
+   let result = undefined;
+
+   fetch("https://api.spotify.com/v1/search?q=justin%20bieber&type=track%2Cartist&market=ES&limit=10&offset=5", {
+     headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "Authorization": "Bearer BQB7pJ3nCCwF7jzOlCuyUXM9_DaYVAeBRKKUYfkYtAgm5xKs5NCs3Y-9dh-Y4UObozy2n79txhTFcqn0nWOc060Fd0quwQzHyI76gP-WR-m6407iJqp9xu2S0dZQptPc5DBW7qWBI-Tc0dIrL-W4p3qWWmGG6vXW1hzN-vtB-rkhZeNlPOlAEsFm8oUSDDL_0mFeITNd0KYjTqV49TIffw&refresh_token=AQASRUprTrvLgUA0Hyw7BqyT8t0BwfgQEHxboj8FQU1nWD8yCENoyoX1UZF8WEIX9mEE4PBAdKYUJ5DIEuXEynVMDixZEc87w0GxubD_IAfTXZ3fTaU4mbucRQ0clV7bNK8"
+     }
+   })
+   .then(response => response.json())
+   .then(data =>  {
+     console.log(data);
+  })
+
+    res.send({
+      result,
+    });
+ });
+
  
  app.get('/callback', function(req, res) {
  
@@ -121,7 +143,7 @@
  });
  
  app.get('/refresh_token', function(req, res) {
- 
+   console.log('called!');
    // requesting access token from refresh token
    var refresh_token = req.query.refresh_token;
    var authOptions = {
@@ -135,7 +157,9 @@
    };
  
    request.post(authOptions, function(error, response, body) {
+     console.log('request post')
      if (!error && response.statusCode === 200) {
+       console.log('error and status code');
        var access_token = body.access_token;
        res.send({
          'access_token': access_token
